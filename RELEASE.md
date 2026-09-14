@@ -9,7 +9,7 @@
 * Initial release of the ONDEWO CSI C# client. The package `Ondewo.CSI.Client` ships the
   gRPC message and client stubs generated from the [ONDEWO CSI API](https://github.com/ondewo/ondewo-csi-api)
   by the `ondewo-csharp-proto-compiler` image of
-  [ondewo-proto-compiler 5.15.0](https://github.com/ondewo/ondewo-proto-compiler): one
+  [ondewo-proto-compiler 5.15.1](https://github.com/ondewo/ondewo-proto-compiler): one
   `<Message>.cs` per proto plus one `<Service>Grpc.cs` per proto that declares a service, nested by C# namespace
   under `api/` - 40 files in this release.
 * The package targets `netstandard2.0`, so it is consumable from .NET Framework 4.6.1+, .NET Core 2.0+ and every

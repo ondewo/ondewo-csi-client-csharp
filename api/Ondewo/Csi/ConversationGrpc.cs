@@ -87,6 +87,10 @@ namespace Ondewo.Csi {
     static readonly grpc::Marshaller<global::Ondewo.Csi.SetControlStatusRequest> __Marshaller_ondewo_csi_SetControlStatusRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.SetControlStatusRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Ondewo.Csi.SetControlStatusResponse> __Marshaller_ondewo_csi_SetControlStatusResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.SetControlStatusResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Ondewo.Csi.CallMediaControlLevel> __Marshaller_ondewo_csi_CallMediaControlLevel = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.CallMediaControlLevel.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Ondewo.Csi.SetCallMediaControlResponse> __Marshaller_ondewo_csi_SetCallMediaControlResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.SetCallMediaControlResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Ondewo.Csi.S2sPipeline, global::Google.Protobuf.WellKnownTypes.Empty> __Method_CreateS2sPipeline = new grpc::Method<global::Ondewo.Csi.S2sPipeline, global::Google.Protobuf.WellKnownTypes.Empty>(
@@ -159,6 +163,14 @@ namespace Ondewo.Csi {
         "SetControlStatus",
         __Marshaller_ondewo_csi_SetControlStatusRequest,
         __Marshaller_ondewo_csi_SetControlStatusResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Ondewo.Csi.CallMediaControlLevel, global::Ondewo.Csi.SetCallMediaControlResponse> __Method_SetCallMediaControl = new grpc::Method<global::Ondewo.Csi.CallMediaControlLevel, global::Ondewo.Csi.SetCallMediaControlResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetCallMediaControl",
+        __Marshaller_ondewo_csi_CallMediaControlLevel,
+        __Marshaller_ondewo_csi_SetCallMediaControlResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -365,6 +377,30 @@ namespace Ondewo.Csi {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::Ondewo.Csi.SetControlStatusResponse> SetControlStatus(global::Ondewo.Csi.SetControlStatusRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// &lt;p>Set the per-call operator media control level: mute the bot and/or pause its listening.&lt;/p>
+      ///
+      /// &lt;p>Pushed by ondewo-sip only, which owns the per-call level and authenticates with its in-container token
+      /// (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused.&lt;/p>
+      ///
+      /// &lt;p>The request carries the FULL effective level, never a toggle. The server applies it only when its
+      /// &lt;code>generation&lt;/code> is strictly greater than the last applied generation and otherwise answers
+      /// &lt;code>stale=true&lt;/code> without changing anything, so a push that arrives after the next call's resync can
+      /// never re-apply an old call's level. The level is cleared at &lt;code>CALL_ENDED&lt;/code>; the generation is kept.&lt;/p>
+      ///
+      /// &lt;p>This RPC never changes the control status of &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code>
+      /// (the barge-in slot). A level change is announced on the control stream as a
+      /// &lt;code>ControlStreamResponse&lt;/code> with &lt;code>media_control&lt;/code> set.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Ondewo.Csi.SetCallMediaControlResponse> SetCallMediaControl(global::Ondewo.Csi.CallMediaControlLevel request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1136,6 +1172,102 @@ namespace Ondewo.Csi {
       {
         return CallInvoker.AsyncUnaryCall(__Method_SetControlStatus, null, options, request);
       }
+      /// <summary>
+      /// &lt;p>Set the per-call operator media control level: mute the bot and/or pause its listening.&lt;/p>
+      ///
+      /// &lt;p>Pushed by ondewo-sip only, which owns the per-call level and authenticates with its in-container token
+      /// (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused.&lt;/p>
+      ///
+      /// &lt;p>The request carries the FULL effective level, never a toggle. The server applies it only when its
+      /// &lt;code>generation&lt;/code> is strictly greater than the last applied generation and otherwise answers
+      /// &lt;code>stale=true&lt;/code> without changing anything, so a push that arrives after the next call's resync can
+      /// never re-apply an old call's level. The level is cleared at &lt;code>CALL_ENDED&lt;/code>; the generation is kept.&lt;/p>
+      ///
+      /// &lt;p>This RPC never changes the control status of &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code>
+      /// (the barge-in slot). A level change is announced on the control stream as a
+      /// &lt;code>ControlStreamResponse&lt;/code> with &lt;code>media_control&lt;/code> set.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Ondewo.Csi.SetCallMediaControlResponse SetCallMediaControl(global::Ondewo.Csi.CallMediaControlLevel request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetCallMediaControl(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// &lt;p>Set the per-call operator media control level: mute the bot and/or pause its listening.&lt;/p>
+      ///
+      /// &lt;p>Pushed by ondewo-sip only, which owns the per-call level and authenticates with its in-container token
+      /// (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused.&lt;/p>
+      ///
+      /// &lt;p>The request carries the FULL effective level, never a toggle. The server applies it only when its
+      /// &lt;code>generation&lt;/code> is strictly greater than the last applied generation and otherwise answers
+      /// &lt;code>stale=true&lt;/code> without changing anything, so a push that arrives after the next call's resync can
+      /// never re-apply an old call's level. The level is cleared at &lt;code>CALL_ENDED&lt;/code>; the generation is kept.&lt;/p>
+      ///
+      /// &lt;p>This RPC never changes the control status of &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code>
+      /// (the barge-in slot). A level change is announced on the control stream as a
+      /// &lt;code>ControlStreamResponse&lt;/code> with &lt;code>media_control&lt;/code> set.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Ondewo.Csi.SetCallMediaControlResponse SetCallMediaControl(global::Ondewo.Csi.CallMediaControlLevel request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetCallMediaControl, null, options, request);
+      }
+      /// <summary>
+      /// &lt;p>Set the per-call operator media control level: mute the bot and/or pause its listening.&lt;/p>
+      ///
+      /// &lt;p>Pushed by ondewo-sip only, which owns the per-call level and authenticates with its in-container token
+      /// (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused.&lt;/p>
+      ///
+      /// &lt;p>The request carries the FULL effective level, never a toggle. The server applies it only when its
+      /// &lt;code>generation&lt;/code> is strictly greater than the last applied generation and otherwise answers
+      /// &lt;code>stale=true&lt;/code> without changing anything, so a push that arrives after the next call's resync can
+      /// never re-apply an old call's level. The level is cleared at &lt;code>CALL_ENDED&lt;/code>; the generation is kept.&lt;/p>
+      ///
+      /// &lt;p>This RPC never changes the control status of &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code>
+      /// (the barge-in slot). A level change is announced on the control stream as a
+      /// &lt;code>ControlStreamResponse&lt;/code> with &lt;code>media_control&lt;/code> set.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Ondewo.Csi.SetCallMediaControlResponse> SetCallMediaControlAsync(global::Ondewo.Csi.CallMediaControlLevel request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetCallMediaControlAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// &lt;p>Set the per-call operator media control level: mute the bot and/or pause its listening.&lt;/p>
+      ///
+      /// &lt;p>Pushed by ondewo-sip only, which owns the per-call level and authenticates with its in-container token
+      /// (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused.&lt;/p>
+      ///
+      /// &lt;p>The request carries the FULL effective level, never a toggle. The server applies it only when its
+      /// &lt;code>generation&lt;/code> is strictly greater than the last applied generation and otherwise answers
+      /// &lt;code>stale=true&lt;/code> without changing anything, so a push that arrives after the next call's resync can
+      /// never re-apply an old call's level. The level is cleared at &lt;code>CALL_ENDED&lt;/code>; the generation is kept.&lt;/p>
+      ///
+      /// &lt;p>This RPC never changes the control status of &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code>
+      /// (the barge-in slot). A level change is announced on the control stream as a
+      /// &lt;code>ControlStreamResponse&lt;/code> with &lt;code>media_control&lt;/code> set.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Ondewo.Csi.SetCallMediaControlResponse> SetCallMediaControlAsync(global::Ondewo.Csi.CallMediaControlLevel request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetCallMediaControl, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override ConversationsClient NewInstance(ClientBaseConfiguration configuration)
@@ -1158,7 +1290,8 @@ namespace Ondewo.Csi {
           .AddMethod(__Method_S2sStream, serviceImpl.S2sStream)
           .AddMethod(__Method_CheckUpstreamHealth, serviceImpl.CheckUpstreamHealth)
           .AddMethod(__Method_GetControlStream, serviceImpl.GetControlStream)
-          .AddMethod(__Method_SetControlStatus, serviceImpl.SetControlStatus).Build();
+          .AddMethod(__Method_SetControlStatus, serviceImpl.SetControlStatus)
+          .AddMethod(__Method_SetCallMediaControl, serviceImpl.SetCallMediaControl).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -1177,6 +1310,7 @@ namespace Ondewo.Csi {
       serviceBinder.AddMethod(__Method_CheckUpstreamHealth, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Ondewo.Csi.CheckUpstreamHealthResponse>(serviceImpl.CheckUpstreamHealth));
       serviceBinder.AddMethod(__Method_GetControlStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Ondewo.Csi.ControlStreamRequest, global::Ondewo.Csi.ControlStreamResponse>(serviceImpl.GetControlStream));
       serviceBinder.AddMethod(__Method_SetControlStatus, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Ondewo.Csi.SetControlStatusRequest, global::Ondewo.Csi.SetControlStatusResponse>(serviceImpl.SetControlStatus));
+      serviceBinder.AddMethod(__Method_SetCallMediaControl, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Ondewo.Csi.CallMediaControlLevel, global::Ondewo.Csi.SetCallMediaControlResponse>(serviceImpl.SetCallMediaControl));
     }
 
   }

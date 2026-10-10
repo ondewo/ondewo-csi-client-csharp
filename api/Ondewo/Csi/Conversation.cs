@@ -55,64 +55,74 @@ namespace Ondewo.Csi {
             "dGhSZXNwb25zZRImCgpzMnRfc3RhdHVzGAEgASgLMhIuZ29vZ2xlLnJwYy5T",
             "dGF0dXMSJgoKbmx1X3N0YXR1cxgCIAEoCzISLmdvb2dsZS5ycGMuU3RhdHVz",
             "EiYKCnQyc19zdGF0dXMYAyABKAsyEi5nb29nbGUucnBjLlN0YXR1cyIWChRD",
-            "b250cm9sU3RyZWFtUmVxdWVzdCJZChVDb250cm9sU3RyZWFtUmVzcG9uc2US",
-            "MQoOY29udHJvbF9zdGF0dXMYASABKA4yGS5vbmRld28uY3NpLkNvbnRyb2xT",
-            "dGF0dXMSDQoFZXBvY2gYAiABKAQiTAoXU2V0Q29udHJvbFN0YXR1c1JlcXVl",
-            "c3QSMQoOY29udHJvbF9zdGF0dXMYASABKA4yGS5vbmRld28uY3NpLkNvbnRy",
-            "b2xTdGF0dXMiiAEKGFNldENvbnRyb2xTdGF0dXNSZXNwb25zZRI1ChJvbGRf",
-            "Y29udHJvbF9zdGF0dXMYASABKA4yGS5vbmRld28uY3NpLkNvbnRyb2xTdGF0",
-            "dXMSNQoSbmV3X2NvbnRyb2xfc3RhdHVzGAIgASgOMhkub25kZXdvLmNzaS5D",
-            "b250cm9sU3RhdHVzIkMKCUNvbmRpdGlvbhInCgR0eXBlGAEgASgOMhkub25k",
-            "ZXdvLmNzaS5Db25kaXRpb25UeXBlEg0KBXZhbHVlGAIgASgJIvsCCh9Db250",
-            "cm9sTWVzc2FnZVNlcnZpY2VQYXJhbWV0ZXJzEi8KCnQyc19jb25maWcYASAB",
-            "KAsyGS5vbmRld28udDJzLlJlcXVlc3RDb25maWdIABI5CgpzMnRfY29uZmln",
-            "GAIgASgLMiMub25kZXdvLnMydC5UcmFuc2NyaWJlUmVxdWVzdENvbmZpZ0gA",
-            "EhMKC3RyYW5zZmVyX2lkGAMgASgJEhEKCXdhdl9maWxlcxgEIAMoDBIMCgR0",
-            "ZXh0GAUgASgJEiQKB2NvbnRleHQYBiABKAsyEy5vbmRld28ubmx1LkNvbnRl",
-            "eHQSEgoKc2Vzc2lvbl9pZBgHIAEoCRIUCgxjb250ZXh0X25hbWUYCCABKAkS",
-            "LgoPY29uZGl0aW9uX3N0YXJ0GAkgASgLMhUub25kZXdvLmNzaS5Db25kaXRp",
-            "b24SLAoNY29uZGl0aW9uX2VuZBgKIAEoCzIVLm9uZGV3by5jc2kuQ29uZGl0",
-            "aW9uQggKBmNvbmZpZyLCAQoOQ29udHJvbE1lc3NhZ2USNgoHc2VydmljZRgB",
-            "IAEoDjIlLm9uZGV3by5jc2kuQ29udHJvbE1lc3NhZ2VTZXJ2aWNlTmFtZRI3",
-            "CgZtZXRob2QYAiABKA4yJy5vbmRld28uY3NpLkNvbnRyb2xNZXNzYWdlU2Vy",
-            "dmljZU1ldGhvZBI/CgpwYXJhbWV0ZXJzGAMgASgLMisub25kZXdvLmNzaS5D",
-            "b250cm9sTWVzc2FnZVNlcnZpY2VQYXJhbWV0ZXJzKrcBCg1Db250cm9sU3Rh",
-            "dHVzEgYKAk9LEAASEgoORU1FUkdFTkNZX1NUT1AQARIXChNWQURfU1RBUlRf",
-            "T0ZfU1BFRUNIEAISDAoIQkFSR0VfSU4QAxITCg9SRVNVTUVfUExBWUJBQ0sQ",
-            "BBIVChFESVNDQVJEX1JFTUFJTkRFUhAFEhQKEFBMQVlCQUNLX1JFU1VNRUQQ",
-            "BhIRCg1QTEFZQkFDS19ET05FEAcSDgoKQ0FMTF9FTkRFRBAIKqABChlDb250",
-            "cm9sTWVzc2FnZVNlcnZpY2VOYW1lEg8KC1VOS05PV05OQU1FEAASDgoKb25k",
-            "ZXdvX3MydBABEg4KCm9uZGV3b190MnMQAhIOCgpvbmRld29fbmx1EAMSDgoK",
-            "b25kZXdvX3NpcBAEEg8KC29uZGV3b192dHNpEAUSDgoKb25kZXdvX2NzaRAG",
-            "EhEKDW9uZGV3b19zdXJ2ZXkQByqFAwobQ29udHJvbE1lc3NhZ2VTZXJ2aWNl",
-            "TWV0aG9kEhEKDVVOS05PV05NRVRIT0QQABIRCg11cGRhdGVfY29uZmlnEAES",
-            "DwoLdW5kb19jb25maWcQAhIQCgxyZXNldF9jb25maWcQAxIMCghlbmRfY2Fs",
-            "bBAEEhEKDXRyYW5zZmVyX2NhbGwQBRISCg5wbGF5X3dhdl9maWxlcxAGEg0K",
-            "CXBsYXlfdGV4dBAHEggKBG11dGUQCBILCgd1bl9tdXRlEAkSHQoZc3RvcF9h",
-            "bGxfY29udHJvbF9tZXNzYWdlcxAKEg8KC3RyYWluX2FnZW50EAsSFgoSY2Fu",
-            "Y2VsX3RyYWluX2FnZW50EAwSEgoOZGVsZXRlX3Nlc3Npb24QDRIXChNkZWxl",
-            "dGVfYWxsX2NvbnRleHRzEA4SEgoOY3JlYXRlX2NvbnRleHQQDxISCg51cGRh",
-            "dGVfY29udGV4dBAQEhIKDmRlbGV0ZV9jb250ZXh0EBESEQoNZGV0ZWN0X2lu",
-            "dGVudBASKlwKDUNvbmRpdGlvblR5cGUSDgoKVU5LTk9XVFlQRRAAEg0KCWlt",
-            "bWVkaWF0ZRABEgwKCGR1cmF0aW9uEAISDAoIZGF0ZXRpbWUQAxIQCgxpbnRl",
-            "cmFjdGlvbnMQBDL6BQoNQ29udmVyc2F0aW9ucxJGChFDcmVhdGVTMnNQaXBl",
-            "bGluZRIXLm9uZGV3by5jc2kuUzJzUGlwZWxpbmUaFi5nb29nbGUucHJvdG9i",
-            "dWYuRW1wdHkiABJGCg5HZXRTMnNQaXBlbGluZRIZLm9uZGV3by5jc2kuUzJz",
-            "UGlwZWxpbmVJZBoXLm9uZGV3by5jc2kuUzJzUGlwZWxpbmUiABJGChFVcGRh",
-            "dGVTMnNQaXBlbGluZRIXLm9uZGV3by5jc2kuUzJzUGlwZWxpbmUaFi5nb29n",
-            "bGUucHJvdG9idWYuRW1wdHkiABJIChFEZWxldGVTMnNQaXBlbGluZRIZLm9u",
-            "ZGV3by5jc2kuUzJzUGlwZWxpbmVJZBoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0",
-            "eSIAEl8KEExpc3RTMnNQaXBlbGluZXMSIy5vbmRld28uY3NpLkxpc3RTMnNQ",
-            "aXBlbGluZXNSZXF1ZXN0GiQub25kZXdvLmNzaS5MaXN0UzJzUGlwZWxpbmVz",
-            "UmVzcG9uc2UiABJOCglTMnNTdHJlYW0SHC5vbmRld28uY3NpLlMyc1N0cmVh",
-            "bVJlcXVlc3QaHS5vbmRld28uY3NpLlMyc1N0cmVhbVJlc3BvbnNlIgAoATAB",
-            "ElgKE0NoZWNrVXBzdHJlYW1IZWFsdGgSFi5nb29nbGUucHJvdG9idWYuRW1w",
-            "dHkaJy5vbmRld28uY3NpLkNoZWNrVXBzdHJlYW1IZWFsdGhSZXNwb25zZSIA",
-            "ElsKEEdldENvbnRyb2xTdHJlYW0SIC5vbmRld28uY3NpLkNvbnRyb2xTdHJl",
-            "YW1SZXF1ZXN0GiEub25kZXdvLmNzaS5Db250cm9sU3RyZWFtUmVzcG9uc2Ui",
-            "ADABEl8KEFNldENvbnRyb2xTdGF0dXMSIy5vbmRld28uY3NpLlNldENvbnRy",
-            "b2xTdGF0dXNSZXF1ZXN0GiQub25kZXdvLmNzaS5TZXRDb250cm9sU3RhdHVz",
-            "UmVzcG9uc2UiAGIGcHJvdG8z"));
+            "b250cm9sU3RyZWFtUmVxdWVzdCKTAQoVQ29udHJvbFN0cmVhbVJlc3BvbnNl",
+            "EjEKDmNvbnRyb2xfc3RhdHVzGAEgASgOMhkub25kZXdvLmNzaS5Db250cm9s",
+            "U3RhdHVzEg0KBWVwb2NoGAIgASgEEjgKDW1lZGlhX2NvbnRyb2wYAyABKAsy",
+            "IS5vbmRld28uY3NpLkNhbGxNZWRpYUNvbnRyb2xMZXZlbCJMChdTZXRDb250",
+            "cm9sU3RhdHVzUmVxdWVzdBIxCg5jb250cm9sX3N0YXR1cxgBIAEoDjIZLm9u",
+            "ZGV3by5jc2kuQ29udHJvbFN0YXR1cyKIAQoYU2V0Q29udHJvbFN0YXR1c1Jl",
+            "c3BvbnNlEjUKEm9sZF9jb250cm9sX3N0YXR1cxgBIAEoDjIZLm9uZGV3by5j",
+            "c2kuQ29udHJvbFN0YXR1cxI1ChJuZXdfY29udHJvbF9zdGF0dXMYAiABKA4y",
+            "GS5vbmRld28uY3NpLkNvbnRyb2xTdGF0dXMiaAoVQ2FsbE1lZGlhQ29udHJv",
+            "bExldmVsEhEKCWJvdF9tdXRlZBgBIAEoCBIYChBsaXN0ZW5pbmdfcGF1c2Vk",
+            "GAIgASgIEhIKCmdlbmVyYXRpb24YAyABKAQSDgoGcmVhc29uGAQgASgJIqkB",
+            "ChtTZXRDYWxsTWVkaWFDb250cm9sUmVzcG9uc2USMgoHYXBwbGllZBgBIAEo",
+            "CzIhLm9uZGV3by5jc2kuQ2FsbE1lZGlhQ29udHJvbExldmVsEg8KB2NoYW5n",
+            "ZWQYAiABKAgSDQoFc3RhbGUYAyABKAgSHgoWYm90X3BsYXliYWNrX2luX2Zs",
+            "aWdodBgEIAEoCBIWCg5yZWZ1c2FsX3JlYXNvbhgFIAEoCSJDCglDb25kaXRp",
+            "b24SJwoEdHlwZRgBIAEoDjIZLm9uZGV3by5jc2kuQ29uZGl0aW9uVHlwZRIN",
+            "CgV2YWx1ZRgCIAEoCSL7AgofQ29udHJvbE1lc3NhZ2VTZXJ2aWNlUGFyYW1l",
+            "dGVycxIvCgp0MnNfY29uZmlnGAEgASgLMhkub25kZXdvLnQycy5SZXF1ZXN0",
+            "Q29uZmlnSAASOQoKczJ0X2NvbmZpZxgCIAEoCzIjLm9uZGV3by5zMnQuVHJh",
+            "bnNjcmliZVJlcXVlc3RDb25maWdIABITCgt0cmFuc2Zlcl9pZBgDIAEoCRIR",
+            "Cgl3YXZfZmlsZXMYBCADKAwSDAoEdGV4dBgFIAEoCRIkCgdjb250ZXh0GAYg",
+            "ASgLMhMub25kZXdvLm5sdS5Db250ZXh0EhIKCnNlc3Npb25faWQYByABKAkS",
+            "FAoMY29udGV4dF9uYW1lGAggASgJEi4KD2NvbmRpdGlvbl9zdGFydBgJIAEo",
+            "CzIVLm9uZGV3by5jc2kuQ29uZGl0aW9uEiwKDWNvbmRpdGlvbl9lbmQYCiAB",
+            "KAsyFS5vbmRld28uY3NpLkNvbmRpdGlvbkIICgZjb25maWciwgEKDkNvbnRy",
+            "b2xNZXNzYWdlEjYKB3NlcnZpY2UYASABKA4yJS5vbmRld28uY3NpLkNvbnRy",
+            "b2xNZXNzYWdlU2VydmljZU5hbWUSNwoGbWV0aG9kGAIgASgOMicub25kZXdv",
+            "LmNzaS5Db250cm9sTWVzc2FnZVNlcnZpY2VNZXRob2QSPwoKcGFyYW1ldGVy",
+            "cxgDIAEoCzIrLm9uZGV3by5jc2kuQ29udHJvbE1lc3NhZ2VTZXJ2aWNlUGFy",
+            "YW1ldGVycyq3AQoNQ29udHJvbFN0YXR1cxIGCgJPSxAAEhIKDkVNRVJHRU5D",
+            "WV9TVE9QEAESFwoTVkFEX1NUQVJUX09GX1NQRUVDSBACEgwKCEJBUkdFX0lO",
+            "EAMSEwoPUkVTVU1FX1BMQVlCQUNLEAQSFQoRRElTQ0FSRF9SRU1BSU5ERVIQ",
+            "BRIUChBQTEFZQkFDS19SRVNVTUVEEAYSEQoNUExBWUJBQ0tfRE9ORRAHEg4K",
+            "CkNBTExfRU5ERUQQCCqgAQoZQ29udHJvbE1lc3NhZ2VTZXJ2aWNlTmFtZRIP",
+            "CgtVTktOT1dOTkFNRRAAEg4KCm9uZGV3b19zMnQQARIOCgpvbmRld29fdDJz",
+            "EAISDgoKb25kZXdvX25sdRADEg4KCm9uZGV3b19zaXAQBBIPCgtvbmRld29f",
+            "dnRzaRAFEg4KCm9uZGV3b19jc2kQBhIRCg1vbmRld29fc3VydmV5EAcqhQMK",
+            "G0NvbnRyb2xNZXNzYWdlU2VydmljZU1ldGhvZBIRCg1VTktOT1dOTUVUSE9E",
+            "EAASEQoNdXBkYXRlX2NvbmZpZxABEg8KC3VuZG9fY29uZmlnEAISEAoMcmVz",
+            "ZXRfY29uZmlnEAMSDAoIZW5kX2NhbGwQBBIRCg10cmFuc2Zlcl9jYWxsEAUS",
+            "EgoOcGxheV93YXZfZmlsZXMQBhINCglwbGF5X3RleHQQBxIICgRtdXRlEAgS",
+            "CwoHdW5fbXV0ZRAJEh0KGXN0b3BfYWxsX2NvbnRyb2xfbWVzc2FnZXMQChIP",
+            "Cgt0cmFpbl9hZ2VudBALEhYKEmNhbmNlbF90cmFpbl9hZ2VudBAMEhIKDmRl",
+            "bGV0ZV9zZXNzaW9uEA0SFwoTZGVsZXRlX2FsbF9jb250ZXh0cxAOEhIKDmNy",
+            "ZWF0ZV9jb250ZXh0EA8SEgoOdXBkYXRlX2NvbnRleHQQEBISCg5kZWxldGVf",
+            "Y29udGV4dBAREhEKDWRldGVjdF9pbnRlbnQQEipcCg1Db25kaXRpb25UeXBl",
+            "Eg4KClVOS05PV1RZUEUQABINCglpbW1lZGlhdGUQARIMCghkdXJhdGlvbhAC",
+            "EgwKCGRhdGV0aW1lEAMSEAoMaW50ZXJhY3Rpb25zEAQy3wYKDUNvbnZlcnNh",
+            "dGlvbnMSRgoRQ3JlYXRlUzJzUGlwZWxpbmUSFy5vbmRld28uY3NpLlMyc1Bp",
+            "cGVsaW5lGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASRgoOR2V0UzJzUGlw",
+            "ZWxpbmUSGS5vbmRld28uY3NpLlMyc1BpcGVsaW5lSWQaFy5vbmRld28uY3Np",
+            "LlMyc1BpcGVsaW5lIgASRgoRVXBkYXRlUzJzUGlwZWxpbmUSFy5vbmRld28u",
+            "Y3NpLlMyc1BpcGVsaW5lGhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASSAoR",
+            "RGVsZXRlUzJzUGlwZWxpbmUSGS5vbmRld28uY3NpLlMyc1BpcGVsaW5lSWQa",
+            "Fi5nb29nbGUucHJvdG9idWYuRW1wdHkiABJfChBMaXN0UzJzUGlwZWxpbmVz",
+            "EiMub25kZXdvLmNzaS5MaXN0UzJzUGlwZWxpbmVzUmVxdWVzdBokLm9uZGV3",
+            "by5jc2kuTGlzdFMyc1BpcGVsaW5lc1Jlc3BvbnNlIgASTgoJUzJzU3RyZWFt",
+            "Ehwub25kZXdvLmNzaS5TMnNTdHJlYW1SZXF1ZXN0Gh0ub25kZXdvLmNzaS5T",
+            "MnNTdHJlYW1SZXNwb25zZSIAKAEwARJYChNDaGVja1Vwc3RyZWFtSGVhbHRo",
+            "EhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5Gicub25kZXdvLmNzaS5DaGVja1Vw",
+            "c3RyZWFtSGVhbHRoUmVzcG9uc2UiABJbChBHZXRDb250cm9sU3RyZWFtEiAu",
+            "b25kZXdvLmNzaS5Db250cm9sU3RyZWFtUmVxdWVzdBohLm9uZGV3by5jc2ku",
+            "Q29udHJvbFN0cmVhbVJlc3BvbnNlIgAwARJfChBTZXRDb250cm9sU3RhdHVz",
+            "EiMub25kZXdvLmNzaS5TZXRDb250cm9sU3RhdHVzUmVxdWVzdBokLm9uZGV3",
+            "by5jc2kuU2V0Q29udHJvbFN0YXR1c1Jlc3BvbnNlIgASYwoTU2V0Q2FsbE1l",
+            "ZGlhQ29udHJvbBIhLm9uZGV3by5jc2kuQ2FsbE1lZGlhQ29udHJvbExldmVs",
+            "Gicub25kZXdvLmNzaS5TZXRDYWxsTWVkaWFDb250cm9sUmVzcG9uc2UiAGIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Google.Rpc.StatusReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, global::Google.Cloud.Dialogflow.V2.SessionReflection.Descriptor, global::Ondewo.T2S.TextToSpeechReflection.Descriptor, global::Ondewo.S2T.SpeechToTextReflection.Descriptor, global::Google.Cloud.Dialogflow.V2.ContextReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Ondewo.Csi.ControlStatus), typeof(global::Ondewo.Csi.ControlMessageServiceName), typeof(global::Ondewo.Csi.ControlMessageServiceMethod), typeof(global::Ondewo.Csi.ConditionType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -125,9 +135,11 @@ namespace Ondewo.Csi {
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.SipTrigger), global::Ondewo.Csi.SipTrigger.Parser, new[]{ "Type", "Content" }, null, new[]{ typeof(global::Ondewo.Csi.SipTrigger.Types.SipTriggerType) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.CheckUpstreamHealthResponse), global::Ondewo.Csi.CheckUpstreamHealthResponse.Parser, new[]{ "S2TStatus", "NluStatus", "T2SStatus" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.ControlStreamRequest), global::Ondewo.Csi.ControlStreamRequest.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.ControlStreamResponse), global::Ondewo.Csi.ControlStreamResponse.Parser, new[]{ "ControlStatus", "Epoch" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.ControlStreamResponse), global::Ondewo.Csi.ControlStreamResponse.Parser, new[]{ "ControlStatus", "Epoch", "MediaControl" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.SetControlStatusRequest), global::Ondewo.Csi.SetControlStatusRequest.Parser, new[]{ "ControlStatus" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.SetControlStatusResponse), global::Ondewo.Csi.SetControlStatusResponse.Parser, new[]{ "OldControlStatus", "NewControlStatus" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.CallMediaControlLevel), global::Ondewo.Csi.CallMediaControlLevel.Parser, new[]{ "BotMuted", "ListeningPaused", "Generation", "Reason" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.SetCallMediaControlResponse), global::Ondewo.Csi.SetCallMediaControlResponse.Parser, new[]{ "Applied", "Changed", "Stale", "BotPlaybackInFlight", "RefusalReason" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.Condition), global::Ondewo.Csi.Condition.Parser, new[]{ "Type", "Value" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.ControlMessageServiceParameters), global::Ondewo.Csi.ControlMessageServiceParameters.Parser, new[]{ "T2SConfig", "S2TConfig", "TransferId", "WavFiles", "Text", "Context", "SessionId", "ContextName", "ConditionStart", "ConditionEnd" }, new[]{ "Config" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Ondewo.Csi.ControlMessage), global::Ondewo.Csi.ControlMessage.Parser, new[]{ "Service", "Method", "Parameters" }, null, null, null, null)
@@ -2809,7 +2821,8 @@ namespace Ondewo.Csi {
         /// </summary>
         [pbr::OriginalName("TRANSFER")] Transfer = 5,
         /// <summary>
-        /// invite to conference call
+        /// invite to conference call. NOT IMPLEMENTED: ondewo-csi cannot reach ondewo-vtsi, which owns call
+        /// participants. Invite a softphone with the ondewo-vtsi &lt;code>Calls.InviteToCall&lt;/code> RPC instead
         /// </summary>
         [pbr::OriginalName("INVITE")] Invite = 6,
         /// <summary>
@@ -3338,6 +3351,7 @@ namespace Ondewo.Csi {
     public ControlStreamResponse(ControlStreamResponse other) : this() {
       controlStatus_ = other.controlStatus_;
       epoch_ = other.epoch_;
+      mediaControl_ = other.mediaControl_ != null ? other.mediaControl_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3377,6 +3391,29 @@ namespace Ondewo.Csi {
       }
     }
 
+    /// <summary>Field number for the "media_control" field.</summary>
+    public const int MediaControlFieldNumber = 3;
+    private global::Ondewo.Csi.CallMediaControlLevel mediaControl_;
+    /// <summary>
+    /// &lt;p>Optional. The per-call operator media control level. Set ONLY on media-control messages: pushed when the
+    /// level changes (&lt;code>SetCallMediaControl&lt;/code>) and sent as the seed on every &lt;code>GetControlStream&lt;/code>
+    /// connect.&lt;/p>
+    ///
+    /// &lt;p>A message that has this field set is a media-control message and nothing else: a client must handle it
+    /// and must NOT read its &lt;code>control_status&lt;/code> / &lt;code>epoch&lt;/code> as a control status transition. The
+    /// server echoes the current control status and epoch in it, but a client that applied that
+    /// &lt;code>control_status&lt;/code> (e.g. &lt;code>OK&lt;/code>) would un-latch a pending &lt;code>BARGE_IN&lt;/code>.
+    /// Messages without this field keep their meaning unchanged.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Ondewo.Csi.CallMediaControlLevel MediaControl {
+      get { return mediaControl_; }
+      set {
+        mediaControl_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3394,6 +3431,7 @@ namespace Ondewo.Csi {
       }
       if (ControlStatus != other.ControlStatus) return false;
       if (Epoch != other.Epoch) return false;
+      if (!object.Equals(MediaControl, other.MediaControl)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3403,6 +3441,7 @@ namespace Ondewo.Csi {
       int hash = 1;
       if (ControlStatus != global::Ondewo.Csi.ControlStatus.Ok) hash ^= ControlStatus.GetHashCode();
       if (Epoch != 0UL) hash ^= Epoch.GetHashCode();
+      if (mediaControl_ != null) hash ^= MediaControl.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3429,6 +3468,10 @@ namespace Ondewo.Csi {
         output.WriteRawTag(16);
         output.WriteUInt64(Epoch);
       }
+      if (mediaControl_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(MediaControl);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3447,6 +3490,10 @@ namespace Ondewo.Csi {
         output.WriteRawTag(16);
         output.WriteUInt64(Epoch);
       }
+      if (mediaControl_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(MediaControl);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3462,6 +3509,9 @@ namespace Ondewo.Csi {
       }
       if (Epoch != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Epoch);
+      }
+      if (mediaControl_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MediaControl);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3480,6 +3530,12 @@ namespace Ondewo.Csi {
       }
       if (other.Epoch != 0UL) {
         Epoch = other.Epoch;
+      }
+      if (other.mediaControl_ != null) {
+        if (mediaControl_ == null) {
+          MediaControl = new global::Ondewo.Csi.CallMediaControlLevel();
+        }
+        MediaControl.MergeFrom(other.MediaControl);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3508,6 +3564,13 @@ namespace Ondewo.Csi {
             Epoch = input.ReadUInt64();
             break;
           }
+          case 26: {
+            if (mediaControl_ == null) {
+              MediaControl = new global::Ondewo.Csi.CallMediaControlLevel();
+            }
+            input.ReadMessage(MediaControl);
+            break;
+          }
         }
       }
     #endif
@@ -3533,6 +3596,13 @@ namespace Ondewo.Csi {
           }
           case 16: {
             Epoch = input.ReadUInt64();
+            break;
+          }
+          case 26: {
+            if (mediaControl_ == null) {
+              MediaControl = new global::Ondewo.Csi.CallMediaControlLevel();
+            }
+            input.ReadMessage(MediaControl);
             break;
           }
         }
@@ -3991,6 +4061,716 @@ namespace Ondewo.Csi {
   }
 
   /// <summary>
+  /// &lt;p>Per-call operator media control level, sent by ondewo-sip to &lt;code>SetCallMediaControl&lt;/code> and pushed by the
+  /// server on the control stream (&lt;code>ControlStreamResponse.media_control&lt;/code>).&lt;/p>
+  ///
+  /// &lt;p>It always carries the FULL effective level. It is independent of the bot's own mixer mute that ondewo-csi
+  /// requests from ondewo-sip with &lt;code>SipMute&lt;/code> / &lt;code>SipUnMute&lt;/code>.&lt;/p>
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class CallMediaControlLevel : pb::IMessage<CallMediaControlLevel>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CallMediaControlLevel> _parser = new pb::MessageParser<CallMediaControlLevel>(() => new CallMediaControlLevel());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CallMediaControlLevel> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[12]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CallMediaControlLevel() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CallMediaControlLevel(CallMediaControlLevel other) : this() {
+      botMuted_ = other.botMuted_;
+      listeningPaused_ = other.listeningPaused_;
+      generation_ = other.generation_;
+      reason_ = other.reason_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CallMediaControlLevel Clone() {
+      return new CallMediaControlLevel(this);
+    }
+
+    /// <summary>Field number for the "bot_muted" field.</summary>
+    public const int BotMutedFieldNumber = 1;
+    private bool botMuted_;
+    /// <summary>
+    /// &lt;p>If &lt;code>true&lt;/code>, the bot is muted: no text-to-speech is synthesized for new responses (the NLU turn
+    /// still runs), the in-flight utterance is aborted and discarded (never resumed), and soft-timeout fillers,
+    /// re-prompts and &lt;code>PLAY_AUDIO&lt;/code> triggers produce no audio.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool BotMuted {
+      get { return botMuted_; }
+      set {
+        botMuted_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "listening_paused" field.</summary>
+    public const int ListeningPausedFieldNumber = 2;
+    private bool listeningPaused_;
+    /// <summary>
+    /// &lt;p>If &lt;code>true&lt;/code>, the bot stops listening: the caller audio sent to speech-to-text is replaced by muted
+    /// zero frames at the capture cadence (the stream stays open and its clock stays aligned with the call), S2T
+    /// responses are dropped before barge-in adjudication and before NLU, and the turn, soft and silence
+    /// timers are suspended (they restart from zero on resume). Blanked audio is never back-filled.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool ListeningPaused {
+      get { return listeningPaused_; }
+      set {
+        listeningPaused_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "generation" field.</summary>
+    public const int GenerationFieldNumber = 3;
+    private ulong generation_;
+    /// <summary>
+    /// &lt;p>ondewo-sip's container-lifetime monotonic counter. Never reset per call. The server applies a level only
+    /// when this value is strictly greater than the last applied one.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong Generation {
+      get { return generation_; }
+      set {
+        generation_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "reason" field.</summary>
+    public const int ReasonFieldNumber = 4;
+    private string reason_ = "";
+    /// <summary>
+    /// &lt;p>Bounded reason token for logs and telemetry: &lt;code>operator&lt;/code>, &lt;code>participant&lt;/code>,
+    /// &lt;code>takeover&lt;/code> or &lt;code>resync&lt;/code>.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Reason {
+      get { return reason_; }
+      set {
+        reason_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CallMediaControlLevel);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CallMediaControlLevel other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (BotMuted != other.BotMuted) return false;
+      if (ListeningPaused != other.ListeningPaused) return false;
+      if (Generation != other.Generation) return false;
+      if (Reason != other.Reason) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (BotMuted != false) hash ^= BotMuted.GetHashCode();
+      if (ListeningPaused != false) hash ^= ListeningPaused.GetHashCode();
+      if (Generation != 0UL) hash ^= Generation.GetHashCode();
+      if (Reason.Length != 0) hash ^= Reason.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (BotMuted != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(BotMuted);
+      }
+      if (ListeningPaused != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(ListeningPaused);
+      }
+      if (Generation != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(Generation);
+      }
+      if (Reason.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Reason);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (BotMuted != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(BotMuted);
+      }
+      if (ListeningPaused != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(ListeningPaused);
+      }
+      if (Generation != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(Generation);
+      }
+      if (Reason.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Reason);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (BotMuted != false) {
+        size += 1 + 1;
+      }
+      if (ListeningPaused != false) {
+        size += 1 + 1;
+      }
+      if (Generation != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Generation);
+      }
+      if (Reason.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Reason);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CallMediaControlLevel other) {
+      if (other == null) {
+        return;
+      }
+      if (other.BotMuted != false) {
+        BotMuted = other.BotMuted;
+      }
+      if (other.ListeningPaused != false) {
+        ListeningPaused = other.ListeningPaused;
+      }
+      if (other.Generation != 0UL) {
+        Generation = other.Generation;
+      }
+      if (other.Reason.Length != 0) {
+        Reason = other.Reason;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            BotMuted = input.ReadBool();
+            break;
+          }
+          case 16: {
+            ListeningPaused = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Generation = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            Reason = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            BotMuted = input.ReadBool();
+            break;
+          }
+          case 16: {
+            ListeningPaused = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Generation = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            Reason = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// &lt;p>Response of &lt;code>SetCallMediaControl&lt;/code>.&lt;/p>
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SetCallMediaControlResponse : pb::IMessage<SetCallMediaControlResponse>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SetCallMediaControlResponse> _parser = new pb::MessageParser<SetCallMediaControlResponse>(() => new SetCallMediaControlResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SetCallMediaControlResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SetCallMediaControlResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SetCallMediaControlResponse(SetCallMediaControlResponse other) : this() {
+      applied_ = other.applied_ != null ? other.applied_.Clone() : null;
+      changed_ = other.changed_;
+      stale_ = other.stale_;
+      botPlaybackInFlight_ = other.botPlaybackInFlight_;
+      refusalReason_ = other.refusalReason_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SetCallMediaControlResponse Clone() {
+      return new SetCallMediaControlResponse(this);
+    }
+
+    /// <summary>Field number for the "applied" field.</summary>
+    public const int AppliedFieldNumber = 1;
+    private global::Ondewo.Csi.CallMediaControlLevel applied_;
+    /// <summary>
+    /// &lt;p>The level the server holds after this request.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Ondewo.Csi.CallMediaControlLevel Applied {
+      get { return applied_; }
+      set {
+        applied_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "changed" field.</summary>
+    public const int ChangedFieldNumber = 2;
+    private bool changed_;
+    /// <summary>
+    /// &lt;p>&lt;code>true&lt;/code> if the effective level changed.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Changed {
+      get { return changed_; }
+      set {
+        changed_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "stale" field.</summary>
+    public const int StaleFieldNumber = 3;
+    private bool stale_;
+    /// <summary>
+    /// &lt;p>&lt;code>true&lt;/code> if the request's generation was not greater than the last applied generation. The
+    /// request was ignored.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Stale {
+      get { return stale_; }
+      set {
+        stale_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "bot_playback_in_flight" field.</summary>
+    public const int BotPlaybackInFlightFieldNumber = 4;
+    private bool botPlaybackInFlight_;
+    /// <summary>
+    /// &lt;p>&lt;code>true&lt;/code> while an utterance is still draining to the caller.&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool BotPlaybackInFlight {
+      get { return botPlaybackInFlight_; }
+      set {
+        botPlaybackInFlight_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "refusal_reason" field.</summary>
+    public const int RefusalReasonFieldNumber = 5;
+    private string refusalReason_ = "";
+    /// <summary>
+    /// &lt;p>Empty when the level was applied. Otherwise a stable refusal token: &lt;code>amd-in-progress&lt;/code>
+    /// (&lt;code>listening_paused&lt;/code> refused during the answering-machine-detection window).&lt;/p>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RefusalReason {
+      get { return refusalReason_; }
+      set {
+        refusalReason_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SetCallMediaControlResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SetCallMediaControlResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Applied, other.Applied)) return false;
+      if (Changed != other.Changed) return false;
+      if (Stale != other.Stale) return false;
+      if (BotPlaybackInFlight != other.BotPlaybackInFlight) return false;
+      if (RefusalReason != other.RefusalReason) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (applied_ != null) hash ^= Applied.GetHashCode();
+      if (Changed != false) hash ^= Changed.GetHashCode();
+      if (Stale != false) hash ^= Stale.GetHashCode();
+      if (BotPlaybackInFlight != false) hash ^= BotPlaybackInFlight.GetHashCode();
+      if (RefusalReason.Length != 0) hash ^= RefusalReason.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (applied_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Applied);
+      }
+      if (Changed != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Changed);
+      }
+      if (Stale != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Stale);
+      }
+      if (BotPlaybackInFlight != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(BotPlaybackInFlight);
+      }
+      if (RefusalReason.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(RefusalReason);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (applied_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Applied);
+      }
+      if (Changed != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Changed);
+      }
+      if (Stale != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Stale);
+      }
+      if (BotPlaybackInFlight != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(BotPlaybackInFlight);
+      }
+      if (RefusalReason.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(RefusalReason);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (applied_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Applied);
+      }
+      if (Changed != false) {
+        size += 1 + 1;
+      }
+      if (Stale != false) {
+        size += 1 + 1;
+      }
+      if (BotPlaybackInFlight != false) {
+        size += 1 + 1;
+      }
+      if (RefusalReason.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RefusalReason);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SetCallMediaControlResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.applied_ != null) {
+        if (applied_ == null) {
+          Applied = new global::Ondewo.Csi.CallMediaControlLevel();
+        }
+        Applied.MergeFrom(other.Applied);
+      }
+      if (other.Changed != false) {
+        Changed = other.Changed;
+      }
+      if (other.Stale != false) {
+        Stale = other.Stale;
+      }
+      if (other.BotPlaybackInFlight != false) {
+        BotPlaybackInFlight = other.BotPlaybackInFlight;
+      }
+      if (other.RefusalReason.Length != 0) {
+        RefusalReason = other.RefusalReason;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (applied_ == null) {
+              Applied = new global::Ondewo.Csi.CallMediaControlLevel();
+            }
+            input.ReadMessage(Applied);
+            break;
+          }
+          case 16: {
+            Changed = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Stale = input.ReadBool();
+            break;
+          }
+          case 32: {
+            BotPlaybackInFlight = input.ReadBool();
+            break;
+          }
+          case 42: {
+            RefusalReason = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (applied_ == null) {
+              Applied = new global::Ondewo.Csi.CallMediaControlLevel();
+            }
+            input.ReadMessage(Applied);
+            break;
+          }
+          case 16: {
+            Changed = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Stale = input.ReadBool();
+            break;
+          }
+          case 32: {
+            BotPlaybackInFlight = input.ReadBool();
+            break;
+          }
+          case 42: {
+            RefusalReason = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   /// A condition message with its type and value.
   /// A Condition can be of various types.
   /// Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:
@@ -4037,7 +4817,7 @@ namespace Ondewo.Csi {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4281,7 +5061,7 @@ namespace Ondewo.Csi {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4944,7 +5724,7 @@ namespace Ondewo.Csi {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Ondewo.Csi.ConversationReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

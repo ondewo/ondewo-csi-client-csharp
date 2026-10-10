@@ -29,7 +29,7 @@ namespace Ondewo.Csi.Client.Tests
         private static readonly string[] UnaryRpcs =
         {
             "CreateS2sPipeline", "GetS2sPipeline", "UpdateS2sPipeline", "DeleteS2sPipeline",
-            "ListS2sPipelines", "CheckUpstreamHealth", "SetControlStatus",
+            "ListS2sPipelines", "CheckUpstreamHealth", "SetControlStatus", "SetCallMediaControl",
         };
 
         /// <summary>
@@ -206,6 +206,46 @@ namespace Ondewo.Csi.Client.Tests
             Assert.Equal(ControlStatus.BargeIn, parsed.ControlStatus);
             Assert.Equal(17UL, parsed.Epoch);
             Assert.NotEmpty(response.ToByteArray());
+        }
+
+        /// <summary>
+        /// CSI API 5.6.0: <c>SetCallMediaControl</c> carries the full effective level, and a
+        /// <c>ControlStreamResponse</c> with <c>media_control</c> set is a media-control message.
+        /// </summary>
+        [Fact]
+        public void CallMediaControlMessagesRoundTrip()
+        {
+            var level = new CallMediaControlLevel
+            {
+                BotMuted = true,
+                ListeningPaused = true,
+                Generation = 42UL,
+                Reason = "operator",
+            };
+            var response = new SetCallMediaControlResponse
+            {
+                Applied = level,
+                Changed = true,
+                Stale = false,
+                BotPlaybackInFlight = true,
+                RefusalReason = "amd-in-progress",
+            };
+
+            SetCallMediaControlResponse parsed =
+                SetCallMediaControlResponse.Parser.ParseFrom(response.ToByteArray());
+
+            Assert.Equal(response, parsed);
+            Assert.Equal(42UL, parsed.Applied.Generation);
+            Assert.True(parsed.BotPlaybackInFlight);
+
+            var push = new ControlStreamResponse { MediaControl = level };
+            ControlStreamResponse parsedPush = ControlStreamResponse.Parser.ParseFrom(push.ToByteArray());
+
+            Assert.Equal(level, parsedPush.MediaControl);
+            Assert.Null(new ControlStreamResponse { ControlStatus = ControlStatus.BargeIn }.MediaControl);
+            Assert.Equal(
+                "ondewo.csi.CallMediaControlLevel",
+                Conversations.Descriptor.FindMethodByName("SetCallMediaControl").InputType.FullName);
         }
 
         [Fact]

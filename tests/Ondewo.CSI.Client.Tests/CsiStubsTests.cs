@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Google.Protobuf;
@@ -7,6 +9,7 @@ using Grpc.Core;
 using Grpc.Net.Client;
 using Ondewo.Csi;
 using Xunit;
+using Type = System.Type;
 
 namespace Ondewo.Csi.Client.Tests
 {
@@ -17,14 +20,20 @@ namespace Ondewo.Csi.Client.Tests
     /// This is the only test file that has to be rewritten when the setup is replicated to another
     /// ONDEWO product - <see cref="GeneratedStubsTests"/> carries over unchanged.
     /// </para>
+    /// <para>
+    /// RPC names written here are MUST-CONTAIN pins - RPCs consumers rely on - and never the whole
+    /// surface: the complete set of services and RPCs is DERIVED from the protos (or the committed
+    /// stubs) by <see cref="CsiApiSurface"/>, so the next API release adds RPCs without editing this file.
+    /// </para>
     /// </summary>
     public class CsiStubsTests
     {
         private const string DummyTarget = "http://localhost:50051";
 
         /// <summary>
-        /// The unary RPCs of <c>ondewo.csi.Conversations</c>. grpc_csharp_plugin gives a unary RPC
-        /// both a blocking <c>Rpc</c> and an <c>RpcAsync</c> overload.
+        /// Unary RPCs of <c>ondewo.csi.Conversations</c> consumers rely on (a must-contain pin, not the
+        /// whole set). grpc_csharp_plugin gives a unary RPC both a blocking <c>Rpc</c> and an
+        /// <c>RpcAsync</c> overload.
         /// </summary>
         private static readonly string[] UnaryRpcs =
         {
@@ -258,10 +267,12 @@ namespace Ondewo.Csi.Client.Tests
             Assert.NotNull(client);
             Assert.Equal("ondewo.csi.Conversations", Conversations.Descriptor.FullName);
             Assert.Equal(
-                UnaryRpcs.Concat(StreamingRpcs).OrderBy(name => name, StringComparer.Ordinal),
-                Conversations.Descriptor.Methods
-                    .Select(method => method.Name)
-                    .OrderBy(name => name, StringComparer.Ordinal));
+                CsiApiSurface.RpcNamesOf("ondewo.csi.Conversations"),
+                Conversations.Descriptor.Methods.Select(method => method.Name));
+            foreach (string rpc in UnaryRpcs.Concat(StreamingRpcs))
+            {
+                Assert.Contains(Conversations.Descriptor.Methods, method => method.Name == rpc);
+            }
 
             string[] clientMethods = typeof(Conversations.ConversationsClient)
                 .GetMethods()
@@ -331,6 +342,105 @@ namespace Ondewo.Csi.Client.Tests
             Assert.Same(
                 ProductStubs.Assembly,
                 typeof(global::Google.Cloud.Dialogflow.V2.DetectIntentResponse).Assembly);
+        }
+
+        /// <summary>
+        /// Every service the CSI protos declare is generated - nothing more, nothing less - with exactly
+        /// the declared RPCs, in declaration order, each with its declared streaming shape, and a client
+        /// that exposes it: a unary RPC as a blocking and an <c>...Async</c> method, a streaming RPC as one.
+        /// Derived from the protos (or the committed stubs), so a new RPC needs no test edit.
+        /// </summary>
+        [Fact]
+        public void EveryServiceTheCsiApiDeclaresIsGeneratedWithEveryRpcAndItsStreamingShape()
+        {
+            using GrpcChannel channel = GrpcChannel.ForAddress(DummyTarget);
+            Type[] serviceClasses = ProductStubs.Assembly.GetTypes()
+                .Where(type => type.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static)?.PropertyType == typeof(ServiceDescriptor))
+                .Where(type => ServiceDescriptorOf(type).FullName.StartsWith(CsiApiSurface.Package + ".", StringComparison.Ordinal))
+                .ToArray();
+
+            Assert.Equal(
+                CsiApiSurface.Services.Keys.OrderBy(name => name, StringComparer.Ordinal),
+                serviceClasses.Select(type => ServiceDescriptorOf(type).FullName).OrderBy(name => name, StringComparer.Ordinal));
+
+            foreach (Type serviceClass in serviceClasses)
+            {
+                ServiceDescriptor service = ServiceDescriptorOf(serviceClass);
+                IReadOnlyList<CsiApiSurface.Rpc> declared = CsiApiSurface.RpcsOf(service.FullName);
+                Assert.Equal(declared.Select(rpc => rpc.Name), service.Methods.Select(method => method.Name));
+
+                Type clientClass = serviceClass.GetNestedType(serviceClass.Name + "Client");
+                Assert.NotNull(clientClass);
+                Assert.NotNull(Activator.CreateInstance(clientClass, channel));
+                string[] clientMethods = clientClass.GetMethods().Select(method => method.Name).Distinct().ToArray();
+
+                foreach (CsiApiSurface.Rpc rpc in declared)
+                {
+                    MethodDescriptor method = service.FindMethodByName(rpc.Name);
+                    Assert.Equal(rpc.ClientStreaming, method.IsClientStreaming);
+                    Assert.Equal(rpc.ServerStreaming, method.IsServerStreaming);
+                    MethodType expected = (rpc.ClientStreaming, rpc.ServerStreaming) switch
+                    {
+                        (false, false) => MethodType.Unary,
+                        (false, true) => MethodType.ServerStreaming,
+                        (true, false) => MethodType.ClientStreaming,
+                        _ => MethodType.DuplexStreaming,
+                    };
+                    Assert.Equal(expected, MethodTypeOf(serviceClass, rpc.Name));
+                    Assert.Contains(rpc.Name, clientMethods);
+                    if (expected == MethodType.Unary)
+                    {
+                        Assert.Contains(rpc.Name + "Async", clientMethods);
+                    }
+                    else
+                    {
+                        Assert.DoesNotContain(rpc.Name + "Async", clientMethods);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// The derivation itself is pinned, so the test above cannot pass by deriving nothing: both
+        /// parsers read real declarations, the product's service is found, and CI - which checks the
+        /// api submodule out - really reads the protos rather than falling back.
+        /// </summary>
+        [Fact]
+        public void TheDerivedApiSurfaceReadsRealDeclarations()
+        {
+            Dictionary<string, List<CsiApiSurface.Rpc>> proto = CsiApiSurface.ParseProto(
+                "syntax = \"proto3\";\npackage ondewo.csi;\n// rpc Commented (A) returns (B);\n" +
+                "service S {\n  rpc One (A) returns (B) { option (x) = { get: \"//v1/{name}\" }; }\n" +
+                "  rpc Two(stream A)\n    returns (stream B);\n  rpc Three (A) returns (stream B);\n}\n");
+            Assert.Equal(
+                new[] { new CsiApiSurface.Rpc("One", false, false), new CsiApiSurface.Rpc("Two", true, true), new CsiApiSurface.Rpc("Three", false, true) },
+                Assert.Single(proto, entry => entry.Key == "ondewo.csi.S").Value);
+
+            Dictionary<string, List<CsiApiSurface.Rpc>> stub = CsiApiSurface.ParseStub(
+                File.ReadAllText(Path.Combine(CsiApiSurface.RepositoryRoot, "api", "Ondewo", "Csi", "ConversationGrpc.cs")));
+            Assert.Contains(new CsiApiSurface.Rpc("S2sStream", true, true), stub["ondewo.csi.Conversations"]);
+            Assert.Contains(new CsiApiSurface.Rpc("GetControlStream", false, true), stub["ondewo.csi.Conversations"]);
+            Assert.Contains(new CsiApiSurface.Rpc("GetS2sPipeline", false, false), stub["ondewo.csi.Conversations"]);
+
+            Assert.Contains("ondewo.csi.Conversations", CsiApiSurface.Services.Keys);
+            Assert.Contains(new CsiApiSurface.Rpc("S2sStream", true, true), CsiApiSurface.RpcsOf("ondewo.csi.Conversations"));
+
+            if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") == "true")
+            {
+                Assert.Equal("protos", CsiApiSurface.Source);
+            }
+        }
+
+        private static ServiceDescriptor ServiceDescriptorOf(Type serviceClass) =>
+            (ServiceDescriptor)serviceClass.GetProperty("Descriptor", BindingFlags.Public | BindingFlags.Static)!.GetValue(null)!;
+
+        private static MethodType MethodTypeOf(Type serviceClass, string rpc)
+        {
+            FieldInfo field = serviceClass.GetField(
+                "__Method_" + rpc, BindingFlags.NonPublic | BindingFlags.Static);
+            Assert.NotNull(field);
+
+            return Assert.IsAssignableFrom<IMethod>(field.GetValue(null)).Type;
         }
 
         private static MethodType MethodTypeOf(string rpc)

@@ -296,6 +296,7 @@ A failed handshake is an `RpcException`; `Grpc.Net.Client` reports a certificate
 ├── ondewo-proto-compiler                    <----- submodule: the code generator
 ├── Ondewo.CSI.Client.csproj     <----- generated project file (tracked)
 ├── Directory.Build.props                    <----- fallback MSBuild pins for a submodule-free build
+├── tools                                    <----- dotnet / gh in pinned images, a core-perl zip reader
 ├── Makefile                                 <----- every documented entry point, see `make help`
 ├── README.md
 └── RELEASE.md
@@ -314,7 +315,7 @@ make build
 | `clean`                               | removes `api/`, `artifacts/`, `nupkg/`, `bin/`, `obj/`                             |
 | `update_submodules`                   | `git submodule update --init --recursive`                                          |
 | `checkout_defined_submodule_versions`  | checks out the pins at the top of the `Makefile`                                   |
-| `build_compiler`                      | builds `ondewo-csharp-proto-compiler:latest` from the pinned submodule              |
+| `build_compiler`                      | builds `ondewo-csharp-proto-compiler:<compiler version>` from the pinned submodule, FROM the digest-pinned .NET SDK image |
 | `generate_ondewo_protos`              | runs that image over `ondewo-csi-api/ondewo` and writes the library back into the repo  |
 | `check_build`                         | fails when a `.proto` produced no `.cs` stub                                        |
 
@@ -324,7 +325,8 @@ Two details are worth knowing:
 
 - The image runs as **root** (it writes into a root-owned directory inside the container), so the files it copies
   out are owned by root. `generate_ondewo_protos` calls `fix_generated_file_ownership` right afterwards, which
-  `sudo chown`s exactly the four paths the image owns — you will be prompted for your password.
+  hands exactly the four paths the image owns back to you with a `chown` in a root container of the same image —
+  no `sudo` on the host.
 - The generated `Ondewo.CSI.Client.csproj` is **tracked**. On the next run the image finds it in the
   input volume and uses it instead of its own default, which is what lets this repository customise the package —
   so keep any edit you make to it restorable from the compiler image's pre-warmed offline NuGet feed, or the
@@ -339,16 +341,21 @@ make pack              ## dotnet pack into nupkg/ (.nupkg + .snupkg)
 make publish_dry_run   ## pack + verify the package is publishable, no credential needed
 ```
 
-None of these needs docker, the submodules or the network beyond NuGet — they work on a plain clone, which is
-exactly what CI runs: `.github/workflows/ci.yml` builds and tests the **committed** stubs and never builds the
-compiler image.
+None of these needs the submodules or the network beyond NuGet — they work on a plain clone, which is exactly
+what CI runs: `.github/workflows/ci.yml` builds and tests the **committed** stubs and never builds the compiler
+image. A host without a .NET SDK needs only docker: the `Makefile` then puts `tools/dotnet-in-docker` on `PATH`,
+which runs every `dotnet` command in `mcr.microsoft.com/dotnet/sdk:10.0.401-noble`, pinned by digest, as your
+own user.
 
 `make test` runs the suite under `tests/` and fails when coverage of the **hand-written** sources drops below
 `COVERAGE_THRESHOLD` (100%). Everything under `api/` is excluded from the metric — it is machine output, and a
 percentage over it measures the generator rather than this repository — but it is still exercised hard: the suite
 round-trips every generated message through its wire format, checks every generated enum starts at its zero
 value, and binds every generated service client to a channel, asserting it exposes every RPC its service
-descriptor declares. Reports land in `coverage/` as cobertura and lcov.
+descriptor declares. The expected `ondewo.csi` services and RPCs, with their streaming shapes, are **derived** from
+`ondewo-csi-api/ondewo/csi/*.proto` when that submodule is checked out (CI checks it out), otherwise from the
+committed `api/Ondewo/Csi/*Grpc.cs` — never hard-coded counts, so an API release that adds RPCs needs no test
+edit; the hand-written RPC lists only pin what must stay. Reports land in `coverage/` as cobertura and lcov.
 
 The generated project file carries no literal versions: it reads `$(OndewoPackageId)`,
 `$(OndewoPackageVersion)`, `$(OndewoTargetFramework)` and the three package-version properties as MSBuild
@@ -377,18 +384,56 @@ Hand-written code is what the coverage gate measures, so anything added here nee
 
 ## Releasing
 
-Bump `ONDEWO_CSI_VERSION` in the `Makefile`, add a `RELEASE.md` entry in the existing format under a
-`## Release ONDEWO CSI Csharp Client <version>` heading — `build_gh_release` slices the release notes out by
-grepping for exactly that line — then:
+Bump `ONDEWO_CSI_VERSION` in the `Makefile`, add a non-empty `RELEASE.md` section under the heading
+`## Release ONDEWO CSI Csharp Client <version>` (matched exactly and anchored, so `5.6.1` never matches a `5.6.10`
+heading) ending at the `*****` separator, then:
 
 ```shell
 make ondewo_release
 ```
 
-That checks the release branch and tag do not exist yet (`spc`), pulls the credentials from the
-`ondewo-devops-accounts` repository, rebuilds everything, tags it, publishes the package
-to NuGet and only then creates the GitHub release, so a GitHub release only ever exists for a version that is on
-nuget.org. `GITHUB_GH_TOKEN` and `NUGET_API_KEY` are read at runtime only and must never be committed.
+The release host needs only **docker, make, git, perl and curl**. `dotnet` runs in the digest-pinned SDK image when
+the host has none (`tools/dotnet-in-docker`), `gh` always runs from a pinned image (`tools/gh-in-docker`: gh
+2.100.0 on a digest-pinned alpine, checksum-verified), the packages are read with `tools/zip-entries.pl` instead
+of `unzip`, and nothing uses `sudo`.
+
+`make ondewo_release` runs, in this order (pinned by `ReleaseCredentialHygieneTests`):
+
+1. **`spc`** — the release branch and tag do not exist locally.
+2. **Credentials** — `run_release_with_devops` clones `ondewo-devops-accounts` into a fresh temporary directory
+   *outside* the repository (which is mounted into the compiler and dotnet containers), reads `GITHUB_GH_TOKEN` and
+   `NUGET_API_KEY` into the environment and **deletes the clone before the release starts**; a trap deletes it on
+   every failure too. When `DEVOPS_ACCOUNT_DIR` names an existing directory (the `ondewo-csi-api` driver's one
+   clone for all clients), that directory is used and left to its owner.
+3. **`release_preflight`** — read-only, runs every check and fails if any did, before anything is built:
+   docker/git/perl/curl exist and docker answers; both credentials are set; GitHub accepts the token **and** it may
+   push to this repository (`gh api repos/ondewo/ondewo-csi-client-csharp --jq .permissions.push`); nuget.org
+   accepts the API key — not expired, scoped to push `Ondewo.CSI.Client` — via
+   `POST https://www.nuget.org/api/v2/package/create-verification-key/Ondewo.CSI.Client/<version>` (uploads
+   nothing; the key reaches curl on stdin); the version is neither a tag nor a `release/` branch on origin
+   (`git ls-remote --exit-code`) nor on nuget.org (flat container index); and the release notes exist.
+4. **The test gate** — `build` (regenerates the stubs), the whole test suite with its coverage gate,
+   `publish_dry_run` (pack, nuspec metadata, a consumer restore) and the SDK guard — all before `git add`.
+5. **The release commit** — `git diff --cached --quiet || git commit`: nothing to commit is fine, a commit that
+   fails stops the release.
+6. **Publish and verify** — `push_to_nuget`, then `verify_nuget_published` polls nuget.org (30 x 30 s) until the
+   flat container lists the version and its `.nupkg` downloads. Only then does anything reach origin.
+7. **`git push`, the release branch, the tag, the GitHub release** (notes from `RELEASE.md` on stdin, refused
+   when empty) and finally **`release_verify`**: the tag is on origin, the GitHub release has notes, nuget.org
+   serves the version. `make release_verify` can be run on its own at any time; it changes nothing.
+
+`release_preflight` and `release_verify` also run standalone with nothing but `DEVOPS_ACCOUNT_DIR` set (the
+`ondewo-csi-api` driver does that): they read the credentials from that directory themselves. `make -n
+ondewo_release` only prints - it does not clone `ondewo-devops-accounts` (the release sub-make goes through
+`$(SUBMAKE)`, because GNU make executes a line that references `$(MAKE)` even under `-n`).
+
+`GITHUB_GH_TOKEN` and `NUGET_API_KEY` are read at runtime only and must never be committed. They never reach an
+argv or a log, and they are not even in the environment of most steps: the `Makefile` `unexport`s both from its
+blanket `export` and hands them back only to the targets that use them (`GITHUB_CREDENTIAL_TARGETS`,
+`NUGET_CREDENTIAL_TARGETS`), so `dotnet restore/build/test/pack` — which run third-party package build targets —
+never see either, and `tools/dotnet-in-docker` forwards `NUGET_API_KEY` to a `dotnet nuget push` container only.
+gh never logs in: every call gets `GH_TOKEN` from `GITHUB_GH_TOKEN` for that one command, so no token is written to
+a gh config on the release host and a stale `GH_TOKEN` / `GITHUB_TOKEN` in your shell is never the one used.
 
 ### The NuGet half
 
@@ -398,28 +443,25 @@ nuget.org. `GITHUB_GH_TOKEN` and `NUGET_API_KEY` are read at runtime only and mu
 | `verify_nupkg_metadata` | reads the nuspec back out of the packed `.nupkg` and fails on missing metadata  |
 | `verify_nupkg_installs` | restores the packed `.nupkg` from a local folder feed into a throwaway consumer  |
 | `publish_dry_run`   | the three above — **needs no credential**, and is what `ci.yml` runs on every push   |
-| `push_to_nuget`     | `dotnet nuget push --skip-duplicate` to `NUGET_SOURCE` — the only step that needs `NUGET_API_KEY` |
-| `publish`           | `publish_dry_run` then `push_to_nuget`; `release` calls it before `push_to_gh`         |
+| `check_nuget_api_key_valid` | read-only: nuget.org accepts `NUGET_API_KEY` for pushing this package        |
+| `push_to_nuget`     | `dotnet nuget push` to `NUGET_SOURCE`, **without** `--skip-duplicate`: "already exists" fails |
+| `verify_nuget_published` | read-only: polls until nuget.org lists the version and serves its `.nupkg`    |
+| `publish`           | `publish_dry_run`, `push_to_nuget`, `verify_nuget_published`                        |
 
-`NUGET_API_KEY` comes from `ondewo-devops-accounts/account_nuget.env` (read by `run_release_with_devops`) and
-must be an API key scoped to **Push** for the glob pattern `Ondewo.*`. The recipe that carries it is
-`@`-prefixed and hands the key to `dotnet` through the environment, so it never reaches a build log. Pushing the
-`.nupkg` uploads the `.snupkg` beside it automatically.
+`NUGET_API_KEY` must be an API key scoped to **Push** for the glob pattern `Ondewo.*`, stored in
+`ondewo-devops-accounts/account_nuget.env`. nuget.org API keys expire (at most 365 days): when the preflight reports
+`nuget.org refused NUGET_API_KEY (HTTP 403)`, renew the key there and in the `NUGET_API_KEY` repository secret.
+Pushing the `.nupkg` uploads the `.snupkg` beside it automatically.
 
 Publishing needs **.NET SDK 10.0.400 or newer**: `dotnet nuget push` reads `NUGET_API_KEY` from the environment
-only from that SDK on. `push_to_nuget` checks for it and stops with an error on an older SDK instead of pushing
-without a key. `release.yml` installs `dotnet-version: '10.0.x'`, which resolves to the newest .NET 10 SDK and so
-satisfies it.
-
-If `make publish` fails after the tag is pushed (an expired `NUGET_API_KEY`, say), `spc` refuses to run the
-release again. Fix the key and finish from the same checkout with `make publish push_to_gh`, with both credentials
-exported in the environment.
+only from that SDK on. `check_nuget_push_sdk` checks for it before anything is committed (and `push_to_nuget` again)
+instead of pushing without a key. The pinned SDK image and `release.yml`'s `dotnet-version: '10.0.x'` satisfy it.
 
 Pushing a version tag (`5.5.0`, `5.5.0-rc.1` — the shape `make create_release_tag` writes) also triggers
-`.github/workflows/release.yml`, which rebuilds the committed stubs, re-runs the test and dry-run gates and
-publishes with the `NUGET_API_KEY` **repository secret**. Without that secret the run stops on its very first
-step with an explicit error rather than quietly publishing nothing. Both that workflow and `make release` push
-with `--skip-duplicate`, so whichever reaches nuget.org second is a no-op.
+`.github/workflows/release.yml`, which re-runs the test and dry-run gates on the tagged tree. `make release` has
+already published by then, so the workflow finds the version on nuget.org, says so and pushes nothing; for a tag
+cut any other way it pushes with the `NUGET_API_KEY` **repository secret** (failing loudly without it), and either
+way it ends by verifying that nuget.org serves the version.
 
 ## Contributing
 

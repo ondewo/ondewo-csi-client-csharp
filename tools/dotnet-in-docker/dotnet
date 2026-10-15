@@ -1,0 +1,50 @@
+#!/bin/sh
+# `dotnet` for a machine without a .NET SDK: runs the same command inside a pinned SDK image.
+#
+# The Makefile puts this directory on PATH ONLY when the host has no `dotnet` of its own (CI installs
+# one with setup-dotnet, so CI never comes here). Every `dotnet` recipe line then runs unchanged.
+#   * The working directory is mounted at its OWN path, so the ${CURDIR} paths the recipes pass
+#     (coverage output, the dry-run nuget.config, the local package feed) mean the same inside.
+#   * It runs as the invoking user, so nothing it writes ends up owned by root.
+#   * MSBuild properties are passed by NAME (`-e NAME`): docker copies the value out of its own
+#     environment, so no value ever reaches an argv.
+#   * NUGET_API_KEY reaches ONLY a `dotnet nuget push` container (by name, as above; the push reads
+#     it from the environment, SDK 10.0.400+, which this image is). Restore, build, test and pack run
+#     third-party package build targets and never see it. The Makefile does not export it to those
+#     recipes either; this is the second fence.
+#   * The image is pinned by exact version AND digest. DOTNET_SDK_IMAGE (exported by the Makefile,
+#     which builds the compiler image FROM the same reference) overrides it; a test keeps the two
+#     defaults equal.
+#   * The NuGet package cache persists between runs in DOTNET_DOCKER_HOME, outside the repository,
+#     so the SDK's default Compile glob can never pick up a .cs file shipped inside a package.
+set -eu
+
+image="${DOTNET_SDK_IMAGE:-mcr.microsoft.com/dotnet/sdk:10.0.401-noble@sha256:e70cdb7f80b0348f5cb85f19a8f670fca061f033d57eed12fa003d58b0e06317}"
+home="${DOTNET_DOCKER_HOME:-${HOME}/.cache/ondewo-dotnet-docker}"
+mkdir -p "${home}"
+workdir="$(pwd)"
+
+if [ "${1:-}" = nuget ] && [ "${2:-}" = push ]; then
+	set -- -e NUGET_API_KEY "${image}" dotnet "$@"
+else
+	set -- "${image}" dotnet "$@"
+fi
+
+exec docker run --rm -i \
+	--user "$(id -u):$(id -g)" \
+	-v "${workdir}:${workdir}" \
+	-v "${home}:${home}" \
+	-w "${workdir}" \
+	-e HOME="${home}" \
+	-e DOTNET_CLI_HOME="${home}" \
+	-e NUGET_PACKAGES="${home}/packages" \
+	-e DOTNET_CLI_TELEMETRY_OPTOUT=1 \
+	-e DOTNET_NOLOGO=1 \
+	-e OndewoPackageId \
+	-e OndewoPackageVersion \
+	-e OndewoTargetFramework \
+	-e OndewoProtosDir \
+	-e GoogleProtobufVersion \
+	-e GrpcDotnetVersion \
+	-e GoogleApiCommonProtosVersion \
+	"$@"

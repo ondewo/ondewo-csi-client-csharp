@@ -3,6 +3,7 @@ name: ci
 on:
   push:
     branches: ['**']
+    tags: ['**']
   pull_request:
   workflow_dispatch:
 
@@ -18,9 +19,15 @@ concurrency:
 jobs:
   lint:
     name: pre-commit
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
+      # actions/checkout starts with a bare `git init`, and git then prints a multi-line
+      # "Using 'master' as the name for the initial branch" hint into every job log. Naming the
+      # default up front silences it; master is this repository's default branch anyway.
+      - name: Name git's default branch
+        run: git config --global init.defaultBranch master
+
       - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
@@ -29,17 +36,29 @@ jobs:
 
       # markdownlint-cli2 + the hygiene hooks. The commit-msg hooks (conventional-pre-commit,
       # giticket) are not part of `pre-commit run --all-files` and are checked on commit instead.
-      - uses: pre-commit/action@v3.0.1
+      # Run directly rather than through pre-commit/action, whose bundled actions/cache@v4 targets
+      # the deprecated Node.js 20 runtime and put a deprecation warning on every run.
+      - name: Install pre-commit
+        run: python -m pip install --upgrade pre-commit
+
+      - name: Run pre-commit on all files
+        run: pre-commit run --all-files --show-diff-on-failure
 
   build:
     name: dotnet build + test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      # The api submodule is NOT checked out. This job builds and tests the stubs that are COMMITTED
-      # under api/; it never builds the compiler image and never runs protoc - regenerating the
-      # stubs is a separate, slow, docker-bound concern driven by `make build` on a developer
-      # machine, and Directory.Build.props mirrors the pins so a build without it works.
+      # This job builds and tests the stubs that are COMMITTED under api/; it never builds the
+      # compiler image and never runs protoc - regenerating the stubs is a separate, slow,
+      # docker-bound concern driven by `make build` on a developer machine, and
+      # Directory.Build.props mirrors the pins so a build without the submodules works.
+      # actions/checkout starts with a bare `git init`, and git then prints a multi-line
+      # "Using 'master' as the name for the initial branch" hint into every job log. Naming the
+      # default up front silences it; master is this repository's default branch anyway.
+      - name: Name git's default branch
+        run: git config --global init.defaultBranch master
+
       - uses: actions/checkout@v7
 
       # ...and the compiler submodule IS, on its own. `make check_dotnet_properties` below reads the
@@ -49,6 +68,13 @@ jobs:
       # and this step is what keeps it able to do its job. One small public repository, depth 1.
       - name: Check out the pinned proto-compiler submodule
         run: git submodule update --init --depth 1 ondewo-proto-compiler
+
+      # The api submodule's own protos (not its nested nlu/s2t/t2s submodules): the API-surface tests
+      # DERIVE every ondewo.csi service and RPC from them, instead of hard-coding counts and lists
+      # that break on the next API release. Without it they fall back to the committed stubs, and a
+      # test asserts that CI does not.
+      - name: Check out the pinned CSI API submodule
+        run: git submodule update --init --depth 1 ondewo-csi-api
 
       - uses: actions/setup-dotnet@v6
         with:

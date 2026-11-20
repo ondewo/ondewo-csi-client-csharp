@@ -2,6 +2,15 @@
 
 *****************
 
+## Release ONDEWO CSI Csharp Client 5.9.0
+
+### Improvements
+
+* Tracking API Version [5.9.0](https://github.com/ondewo/ondewo-csi-api/releases/tag/5.9.0) ( [Documentation](https://ondewo.github.io/ondewo-csi-api/) )
+* Generated with ondewo-proto-compiler 5.17.0 (protoc 35.1); new runtime floors: Google.Protobuf 3.35.1, Grpc.Core.Api / Grpc.Net.Client 2.85.0, Google.Api.CommonProtos 2.17.0 (protoc 35.1).
+
+*****************
+
 ## Release ONDEWO CSI Csharp Client 5.7.0
 
 ### Improvements

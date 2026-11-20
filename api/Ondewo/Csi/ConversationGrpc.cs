@@ -91,6 +91,14 @@ namespace Ondewo.Csi {
     static readonly grpc::Marshaller<global::Ondewo.Csi.CallMediaControlLevel> __Marshaller_ondewo_csi_CallMediaControlLevel = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.CallMediaControlLevel.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Ondewo.Csi.SetCallMediaControlResponse> __Marshaller_ondewo_csi_SetCallMediaControlResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.SetCallMediaControlResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Ondewo.Csi.CallerDtmfRequest> __Marshaller_ondewo_csi_CallerDtmfRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.CallerDtmfRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Ondewo.Csi.CallerDtmfResponse> __Marshaller_ondewo_csi_CallerDtmfResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.CallerDtmfResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Ondewo.Csi.WarmTransferOutcomeNotice> __Marshaller_ondewo_csi_WarmTransferOutcomeNotice = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.WarmTransferOutcomeNotice.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse> __Marshaller_ondewo_csi_WarmTransferOutcomeNoticeResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Ondewo.Csi.S2sPipeline, global::Google.Protobuf.WellKnownTypes.Empty> __Method_CreateS2sPipeline = new grpc::Method<global::Ondewo.Csi.S2sPipeline, global::Google.Protobuf.WellKnownTypes.Empty>(
@@ -171,6 +179,22 @@ namespace Ondewo.Csi {
         "SetCallMediaControl",
         __Marshaller_ondewo_csi_CallMediaControlLevel,
         __Marshaller_ondewo_csi_SetCallMediaControlResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Ondewo.Csi.CallerDtmfRequest, global::Ondewo.Csi.CallerDtmfResponse> __Method_SetCallerDtmf = new grpc::Method<global::Ondewo.Csi.CallerDtmfRequest, global::Ondewo.Csi.CallerDtmfResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetCallerDtmf",
+        __Marshaller_ondewo_csi_CallerDtmfRequest,
+        __Marshaller_ondewo_csi_CallerDtmfResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Ondewo.Csi.WarmTransferOutcomeNotice, global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse> __Method_DeliverWarmTransferOutcomeNotice = new grpc::Method<global::Ondewo.Csi.WarmTransferOutcomeNotice, global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeliverWarmTransferOutcomeNotice",
+        __Marshaller_ondewo_csi_WarmTransferOutcomeNotice,
+        __Marshaller_ondewo_csi_WarmTransferOutcomeNoticeResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -401,6 +425,54 @@ namespace Ondewo.Csi {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::Ondewo.Csi.SetCallMediaControlResponse> SetCallMediaControl(global::Ondewo.Csi.CallMediaControlLevel request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// &lt;p>Report one DTMF key the caller pressed on the current call.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, one request per key in the order received, authenticated with its in-container
+      /// token (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused
+      /// with &lt;code>UNAUTHENTICATED&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>The server turns keys into caller input: a key pressed while the bot speaks is a barge-in, a key of a
+      /// declared menu commits a turn at once, and a key string is collected until its terminator, its maximum length
+      /// or its inter-digit timeout. A key of another call, a repeated or older sequence number, or a key while the
+      /// server takes no keys is answered &lt;code>accepted=false&lt;/code> with a reason token and changes nothing. Neither
+      /// side ever logs the digit in clear.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Ondewo.Csi.CallerDtmfResponse> SetCallerDtmf(global::Ondewo.Csi.CallerDtmfRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// &lt;p>Deliver the outcome of a warm transfer that did NOT hand the caller over, so the bot can tell the
+      /// caller.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, authenticated with its in-container token (the
+      /// &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused with
+      /// &lt;code>UNAUTHENTICATED&lt;/code>. ondewo-sip sends it whenever a notice is attached to the release of the
+      /// participant hold, after the level push of &lt;code>SetCallMediaControl&lt;/code> or on its own when the level did not
+      /// change, and re-sends a notice it holds as pending (resync) by this RPC only, never inside a level. It clears
+      /// its pending notice on &lt;code>QUEUED&lt;/code> or &lt;code>DUPLICATE&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>A queued notice is never dropped by the server, except by &lt;code>CALL_ENDED&lt;/code>: there is no caller left
+      /// to tell. It is spoken once the bot is unmuted, its listening is not paused and no utterance is in flight. See
+      /// &lt;code>WarmTransferOutcomeNotice&lt;/code> for how. This RPC has no generation, never changes the control status of
+      /// &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code> and is never announced on the control stream. A
+      /// server built against a CSI API before 5.9.0 answers &lt;code>UNIMPLEMENTED&lt;/code>.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse> DeliverWarmTransferOutcomeNotice(global::Ondewo.Csi.WarmTransferOutcomeNotice request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1268,6 +1340,198 @@ namespace Ondewo.Csi {
       {
         return CallInvoker.AsyncUnaryCall(__Method_SetCallMediaControl, null, options, request);
       }
+      /// <summary>
+      /// &lt;p>Report one DTMF key the caller pressed on the current call.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, one request per key in the order received, authenticated with its in-container
+      /// token (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused
+      /// with &lt;code>UNAUTHENTICATED&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>The server turns keys into caller input: a key pressed while the bot speaks is a barge-in, a key of a
+      /// declared menu commits a turn at once, and a key string is collected until its terminator, its maximum length
+      /// or its inter-digit timeout. A key of another call, a repeated or older sequence number, or a key while the
+      /// server takes no keys is answered &lt;code>accepted=false&lt;/code> with a reason token and changes nothing. Neither
+      /// side ever logs the digit in clear.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Ondewo.Csi.CallerDtmfResponse SetCallerDtmf(global::Ondewo.Csi.CallerDtmfRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetCallerDtmf(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// &lt;p>Report one DTMF key the caller pressed on the current call.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, one request per key in the order received, authenticated with its in-container
+      /// token (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused
+      /// with &lt;code>UNAUTHENTICATED&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>The server turns keys into caller input: a key pressed while the bot speaks is a barge-in, a key of a
+      /// declared menu commits a turn at once, and a key string is collected until its terminator, its maximum length
+      /// or its inter-digit timeout. A key of another call, a repeated or older sequence number, or a key while the
+      /// server takes no keys is answered &lt;code>accepted=false&lt;/code> with a reason token and changes nothing. Neither
+      /// side ever logs the digit in clear.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Ondewo.Csi.CallerDtmfResponse SetCallerDtmf(global::Ondewo.Csi.CallerDtmfRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetCallerDtmf, null, options, request);
+      }
+      /// <summary>
+      /// &lt;p>Report one DTMF key the caller pressed on the current call.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, one request per key in the order received, authenticated with its in-container
+      /// token (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused
+      /// with &lt;code>UNAUTHENTICATED&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>The server turns keys into caller input: a key pressed while the bot speaks is a barge-in, a key of a
+      /// declared menu commits a turn at once, and a key string is collected until its terminator, its maximum length
+      /// or its inter-digit timeout. A key of another call, a repeated or older sequence number, or a key while the
+      /// server takes no keys is answered &lt;code>accepted=false&lt;/code> with a reason token and changes nothing. Neither
+      /// side ever logs the digit in clear.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Ondewo.Csi.CallerDtmfResponse> SetCallerDtmfAsync(global::Ondewo.Csi.CallerDtmfRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetCallerDtmfAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// &lt;p>Report one DTMF key the caller pressed on the current call.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, one request per key in the order received, authenticated with its in-container
+      /// token (the &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused
+      /// with &lt;code>UNAUTHENTICATED&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>The server turns keys into caller input: a key pressed while the bot speaks is a barge-in, a key of a
+      /// declared menu commits a turn at once, and a key string is collected until its terminator, its maximum length
+      /// or its inter-digit timeout. A key of another call, a repeated or older sequence number, or a key while the
+      /// server takes no keys is answered &lt;code>accepted=false&lt;/code> with a reason token and changes nothing. Neither
+      /// side ever logs the digit in clear.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Ondewo.Csi.CallerDtmfResponse> SetCallerDtmfAsync(global::Ondewo.Csi.CallerDtmfRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetCallerDtmf, null, options, request);
+      }
+      /// <summary>
+      /// &lt;p>Deliver the outcome of a warm transfer that did NOT hand the caller over, so the bot can tell the
+      /// caller.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, authenticated with its in-container token (the
+      /// &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused with
+      /// &lt;code>UNAUTHENTICATED&lt;/code>. ondewo-sip sends it whenever a notice is attached to the release of the
+      /// participant hold, after the level push of &lt;code>SetCallMediaControl&lt;/code> or on its own when the level did not
+      /// change, and re-sends a notice it holds as pending (resync) by this RPC only, never inside a level. It clears
+      /// its pending notice on &lt;code>QUEUED&lt;/code> or &lt;code>DUPLICATE&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>A queued notice is never dropped by the server, except by &lt;code>CALL_ENDED&lt;/code>: there is no caller left
+      /// to tell. It is spoken once the bot is unmuted, its listening is not paused and no utterance is in flight. See
+      /// &lt;code>WarmTransferOutcomeNotice&lt;/code> for how. This RPC has no generation, never changes the control status of
+      /// &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code> and is never announced on the control stream. A
+      /// server built against a CSI API before 5.9.0 answers &lt;code>UNIMPLEMENTED&lt;/code>.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse DeliverWarmTransferOutcomeNotice(global::Ondewo.Csi.WarmTransferOutcomeNotice request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeliverWarmTransferOutcomeNotice(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// &lt;p>Deliver the outcome of a warm transfer that did NOT hand the caller over, so the bot can tell the
+      /// caller.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, authenticated with its in-container token (the
+      /// &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused with
+      /// &lt;code>UNAUTHENTICATED&lt;/code>. ondewo-sip sends it whenever a notice is attached to the release of the
+      /// participant hold, after the level push of &lt;code>SetCallMediaControl&lt;/code> or on its own when the level did not
+      /// change, and re-sends a notice it holds as pending (resync) by this RPC only, never inside a level. It clears
+      /// its pending notice on &lt;code>QUEUED&lt;/code> or &lt;code>DUPLICATE&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>A queued notice is never dropped by the server, except by &lt;code>CALL_ENDED&lt;/code>: there is no caller left
+      /// to tell. It is spoken once the bot is unmuted, its listening is not paused and no utterance is in flight. See
+      /// &lt;code>WarmTransferOutcomeNotice&lt;/code> for how. This RPC has no generation, never changes the control status of
+      /// &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code> and is never announced on the control stream. A
+      /// server built against a CSI API before 5.9.0 answers &lt;code>UNIMPLEMENTED&lt;/code>.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse DeliverWarmTransferOutcomeNotice(global::Ondewo.Csi.WarmTransferOutcomeNotice request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeliverWarmTransferOutcomeNotice, null, options, request);
+      }
+      /// <summary>
+      /// &lt;p>Deliver the outcome of a warm transfer that did NOT hand the caller over, so the bot can tell the
+      /// caller.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, authenticated with its in-container token (the
+      /// &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused with
+      /// &lt;code>UNAUTHENTICATED&lt;/code>. ondewo-sip sends it whenever a notice is attached to the release of the
+      /// participant hold, after the level push of &lt;code>SetCallMediaControl&lt;/code> or on its own when the level did not
+      /// change, and re-sends a notice it holds as pending (resync) by this RPC only, never inside a level. It clears
+      /// its pending notice on &lt;code>QUEUED&lt;/code> or &lt;code>DUPLICATE&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>A queued notice is never dropped by the server, except by &lt;code>CALL_ENDED&lt;/code>: there is no caller left
+      /// to tell. It is spoken once the bot is unmuted, its listening is not paused and no utterance is in flight. See
+      /// &lt;code>WarmTransferOutcomeNotice&lt;/code> for how. This RPC has no generation, never changes the control status of
+      /// &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code> and is never announced on the control stream. A
+      /// server built against a CSI API before 5.9.0 answers &lt;code>UNIMPLEMENTED&lt;/code>.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse> DeliverWarmTransferOutcomeNoticeAsync(global::Ondewo.Csi.WarmTransferOutcomeNotice request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeliverWarmTransferOutcomeNoticeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// &lt;p>Deliver the outcome of a warm transfer that did NOT hand the caller over, so the bot can tell the
+      /// caller.&lt;/p>
+      ///
+      /// &lt;p>Sent by ondewo-sip only, authenticated with its in-container token (the
+      /// &lt;code>x-ondewo-sip-in-container-token&lt;/code> metadatum). A request without a valid token is refused with
+      /// &lt;code>UNAUTHENTICATED&lt;/code>. ondewo-sip sends it whenever a notice is attached to the release of the
+      /// participant hold, after the level push of &lt;code>SetCallMediaControl&lt;/code> or on its own when the level did not
+      /// change, and re-sends a notice it holds as pending (resync) by this RPC only, never inside a level. It clears
+      /// its pending notice on &lt;code>QUEUED&lt;/code> or &lt;code>DUPLICATE&lt;/code>.&lt;/p>
+      ///
+      /// &lt;p>A queued notice is never dropped by the server, except by &lt;code>CALL_ENDED&lt;/code>: there is no caller left
+      /// to tell. It is spoken once the bot is unmuted, its listening is not paused and no utterance is in flight. See
+      /// &lt;code>WarmTransferOutcomeNotice&lt;/code> for how. This RPC has no generation, never changes the control status of
+      /// &lt;code>GetControlStream&lt;/code> / &lt;code>SetControlStatus&lt;/code> and is never announced on the control stream. A
+      /// server built against a CSI API before 5.9.0 answers &lt;code>UNIMPLEMENTED&lt;/code>.&lt;/p>
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse> DeliverWarmTransferOutcomeNoticeAsync(global::Ondewo.Csi.WarmTransferOutcomeNotice request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeliverWarmTransferOutcomeNotice, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override ConversationsClient NewInstance(ClientBaseConfiguration configuration)
@@ -1291,7 +1555,9 @@ namespace Ondewo.Csi {
           .AddMethod(__Method_CheckUpstreamHealth, serviceImpl.CheckUpstreamHealth)
           .AddMethod(__Method_GetControlStream, serviceImpl.GetControlStream)
           .AddMethod(__Method_SetControlStatus, serviceImpl.SetControlStatus)
-          .AddMethod(__Method_SetCallMediaControl, serviceImpl.SetCallMediaControl).Build();
+          .AddMethod(__Method_SetCallMediaControl, serviceImpl.SetCallMediaControl)
+          .AddMethod(__Method_SetCallerDtmf, serviceImpl.SetCallerDtmf)
+          .AddMethod(__Method_DeliverWarmTransferOutcomeNotice, serviceImpl.DeliverWarmTransferOutcomeNotice).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -1311,6 +1577,8 @@ namespace Ondewo.Csi {
       serviceBinder.AddMethod(__Method_GetControlStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Ondewo.Csi.ControlStreamRequest, global::Ondewo.Csi.ControlStreamResponse>(serviceImpl.GetControlStream));
       serviceBinder.AddMethod(__Method_SetControlStatus, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Ondewo.Csi.SetControlStatusRequest, global::Ondewo.Csi.SetControlStatusResponse>(serviceImpl.SetControlStatus));
       serviceBinder.AddMethod(__Method_SetCallMediaControl, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Ondewo.Csi.CallMediaControlLevel, global::Ondewo.Csi.SetCallMediaControlResponse>(serviceImpl.SetCallMediaControl));
+      serviceBinder.AddMethod(__Method_SetCallerDtmf, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Ondewo.Csi.CallerDtmfRequest, global::Ondewo.Csi.CallerDtmfResponse>(serviceImpl.SetCallerDtmf));
+      serviceBinder.AddMethod(__Method_DeliverWarmTransferOutcomeNotice, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Ondewo.Csi.WarmTransferOutcomeNotice, global::Ondewo.Csi.WarmTransferOutcomeNoticeResponse>(serviceImpl.DeliverWarmTransferOutcomeNotice));
     }
 
   }
